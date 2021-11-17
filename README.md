@@ -283,7 +283,7 @@ $
 $ ls tests/arista_eos/show_version/
 arista_eos_show_version.raw
 $
-$ ./development_scripts.py -c tests/arista_eos/show_version/arista_eos_show_version.txt
+$ ./development_scripts.py -c tests/arista_eos/show_version/arista_eos_show_version.raw
 $ ls tests/arista_eos/show_version/
 arista_eos_show_version.raw   arista_eos_show_version.yml
 $
