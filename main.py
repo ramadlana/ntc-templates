@@ -1,3 +1,9 @@
+# This is for testing purposed
+import os
+directory = os.path.dirname(__file__)
+fileLoc = os.path.join(directory, "ntc_templates")
+os.environ["NTC_TEMPLATES_DIR"] = fileLoc
+
 from ntc_templates.parse import parse_output
 
 unparsed="""
