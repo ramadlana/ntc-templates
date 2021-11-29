@@ -1,17 +1,14 @@
-# this is for testing, after success testing here move to real textfsm files and update the index
-Value PORT (\S+)
-Value TYPE (\S+)
-Value SPEED (\d+G?)
+Value INTERFACE (\S+)
+Value STATUS (up|down|admin down|deleted)
+Value PROTOCOL (\S+)
 Value DESCRIPTION (\S.*?)
 
-Start
-  ^Interface\s+.+Description\s*$$ -> Begin
-
 Begin
-  ^-+
-  ^Port\s+Type\s+Speed\s+Description\s*$$
-  ^Interface\s+Description\s*$$
-  ^${PORT}\s+${TYPE}\s+${SPEED}(?:\s+${DESCRIPTION})?\s*$$ -> Record
-  ^${PORT}\s+(?:\s+${DESCRIPTION})?\s*$$ -> Record
-  ^\s*$$
+  ^Interface\.*$$ -> Start
+
+Start
+  ^Interface.*$$
+  ^${INTERFACE}\s+${STATUS}\s+${PROTOCOL}\s+$$ -> Record
+  ^${INTERFACE}\s+${STATUS}\s+${PROTOCOL}$$ -> Record
+  ^${INTERFACE}\s+${STATUS}\s+${PROTOCOL}\s+${DESCRIPTION}$$ -> Record
   ^. -> Error
