@@ -14,7 +14,7 @@ Installation and Usage
 - ctrl+p and search for vendorname_osname_show_test
 - edit the textfsm (vendorname_osname_show_test.textfsm files)
 
-Example textfsm files
+##### Example textfsm files
 ```
 Value INTERFACE (\S+)
 Value STATUS (up|down|admin down|deleted)
@@ -33,7 +33,7 @@ Start
   ^. -> Error
 ```
 
-Example Unparsed data
+##### Example Unparsed data
 ```
 Interface                      Status         Protocol Description
 Vl1                            admin down     down     
