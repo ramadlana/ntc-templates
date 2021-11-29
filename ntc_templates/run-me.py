@@ -1,10 +1,16 @@
 # This is for testing purposed
-import os
-directory = os.path.dirname(__file__)
-fileLoc = os.path.join(directory, "ntc_templates")
-os.environ["NTC_TEMPLATES_DIR"] = fileLoc
+# 1. put unparsed data on unparsed variable
+# 2. ctrl+p and search for vendorname_osname_show_test
+# 3. edit the textfsm
+# 4. run the test here
 
-from ntc_templates.parse import parse_output
+import os
+import json
+from parse import parse_output
+
+directory = os.path.dirname(__file__)
+fileLoc = os.path.join(directory, "templates")
+os.environ["NTC_TEMPLATES_DIR"] = fileLoc
 
 unparsed="""
 Interface                      Status         Protocol Description
@@ -23,5 +29,5 @@ Gi0/10                         up             up       UPLINK TO TULCCD3S01P
 Gi0/10.10                      deleted        down
 Gi0/10.20                      up             up       Carrier VLAN
 """
-parsed = parse_output(platform="test_os", command="show test", data=unparsed)
-print(parsed)
+parsed = parse_output(platform="os_name", command="show test", data=unparsed)
+print(json.dumps(parsed, indent=4))

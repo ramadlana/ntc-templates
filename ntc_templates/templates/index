@@ -12,9 +12,7 @@
 Template, Hostname, Platform, Command
 
 # CUSTOM TEMPLATE HERE
-test_os_show_test.textfsm, .*, test_os, show test
-
-
+vendorname_osname_show_test.textfsm, .*, os_name, show test
 # END OF CUSTOM TEMPLATE
 alcatel_aos_show_vlan.textfsm, .*, alcatel_aos, show vlan
 
