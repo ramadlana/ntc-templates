@@ -11,4 +11,5 @@ Start
   ^${INTERFACE}\s+${STATUS}\s+${PROTOCOL}\s+$$ -> Record
   ^${INTERFACE}\s+${STATUS}\s+${PROTOCOL}$$ -> Record
   ^${INTERFACE}\s+${STATUS}\s+${PROTOCOL}\s+${DESCRIPTION}$$ -> Record
+  ^\s*$$
   ^. -> Error
