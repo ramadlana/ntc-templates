@@ -1,0 +1,17 @@
+Value Filldown ROUTETABLES (\S+)
+Value DESTINATION (\S+)
+Value PROTO (\S+)
+Value PRE (\S+)
+Value COST (\S+)
+Value FLAG (\S+)
+Value NEXTHOP (\S+)
+Value Required INTERFACE (\S+)
+
+Start
+  ^Routing Tables:\s+${ROUTETABLES} -> Record
+  ^Destination/Mask.*NextHop\s+Interface$$ -> Interfaces
+
+Interfaces
+  ^\s*${DESTINATION}\s+${PROTO}\s+${PRE}\s+${COST}\s+${FLAG}\s+${NEXTHOP}\s+${INTERFACE}$$ -> Record
+  ^\s*$$
+  ^. -> Error

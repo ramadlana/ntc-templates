@@ -11,9 +11,16 @@
 #
 Template, Hostname, Platform, Command
 
-# CUSTOM TEMPLATE HERE
+#  CUSTOM TEMPLATE BLOCK
+#  hidayah_ramadlana@multipolar.com
+#  MULTIPOLAR TECHNOLOGY TBK
 vendorname_osname_show_test.textfsm, .*, os_name, show test
-# END OF CUSTOM TEMPLATE
+vendorname_osname_test1.textfsm, .*, os_name, test1
+huawei_vrp_display_ip_routing-table.textfsm, .*, vrp, display ip routing-table
+#  END CUSTOM TEMPLATE BLOCK
+
+
+# Default template
 alcatel_aos_show_vlan.textfsm, .*, alcatel_aos, show vlan
 
 alcatel_sros_show_router_bgp_routes_vpn-ipv4.textfsm, .*, alcatel_sros, sh[[ow]] router bgp rou[[tes]] vpn-ipv4

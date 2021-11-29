@@ -1,0 +1,6 @@
+Value TARGETTR (\S+)
+Value FINISHED (\S+)
+
+Start
+  ^Tracing\s+the\s+route\s+to\s+${TARGETTR}\s*$$ -> Continue
+  ^finished:\s+${FINISHED}
