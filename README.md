@@ -110,7 +110,7 @@ Start
   ^Destination/Mask.*NextHop\s+Interface$$ -> Interfaces
 
 Interfaces
-  ^\s*${DESTINATION}\s+${PROTO}\s+${PRE}\s+${COST}\s+${FLAG}\s+${NEXTHOP}\s+${INTERFACE}$$ -> Record
+  ^\s*${DESTINATION}\s+${PROTO}\s+${PRE}\s+${COST}\s+${FLAG}\s+${NEXTHOP}\s+${INTERFACE}.*$$ -> Record
   ^\s*$$
   ^. -> Error
 ```
