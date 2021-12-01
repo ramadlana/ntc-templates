@@ -12,6 +12,7 @@
 Template, Hostname, Platform, Command
 
 #  CUSTOM TEMPLATE BLOCK
+# every custom template please put here
 #  hidayah_ramadlana@multipolar.com
 #  MULTIPOLAR TECHNOLOGY TBK
 vendorname_osname_show_test.textfsm, .*, os_name, show test
