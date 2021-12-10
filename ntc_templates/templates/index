@@ -18,6 +18,8 @@ Template, Hostname, Platform, Command
 vendorname_osname_show_test.textfsm, .*, os_name, show test
 vendorname_osname_test1.textfsm, .*, os_name, test1
 huawei_vrp_display_ip_routing-table.textfsm, .*, vrp, display ip routing-table
+huawei_vrp_display_ip_interface_brief.textfsm, .*, vrp, display ip interface brief
+huawei_olt_display_vlan_desc_no_more.textfsm, .*, huawei_olt, display vlan  desc 1-4093 | no-more
 #  END CUSTOM TEMPLATE BLOCK
 
 

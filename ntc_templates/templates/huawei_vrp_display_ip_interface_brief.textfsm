@@ -1,0 +1,12 @@
+Value INTERFACE (\S+)
+Value SUBINTERFACE (\d+)
+Value IP (\S+)
+Value PHSYSICAL (\S+)
+Value PROTO (\S+)
+Value VPN (\S+)
+
+Start
+  ^Interface\s+IP\s+Address/Mask\s+Physical\s+Protocol\s+VPN.*$$ -> Interfaces
+
+Interfaces
+  ^${INTERFACE}\.${SUBINTERFACE}(\(10G\))?\s+${IP}\s+${PHSYSICAL}\s+${PROTO}\s+${VPN}.*$$ -> Record
