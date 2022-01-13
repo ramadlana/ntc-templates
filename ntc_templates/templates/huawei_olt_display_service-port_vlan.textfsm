@@ -1,0 +1,23 @@
+Value INDEX (\S+)
+Value VLANID (\S+)
+Value VLANATTR (\S+)
+Value PORTTYPE (\S+)
+Value FRAMESLOT (\S+)
+Value PORT (\S+)
+Value VPI (\S+)
+Value VCI (\S+)
+Value FLOWTYPE (\S+)
+Value FLOWPARA (\S+)
+Value RX (\S+)
+Value TX (\S+)
+Value STATE (\S+)
+
+Start
+  ^\s+ID\s+ATTR\s+TYPE\s+TYPE\s+PARA.*$$ -> Interface
+
+Interface
+  ^\s*------.*$$
+  ^\s*${INDEX}\s+${VLANID}\s+${VLANATTR}\s+${PORTTYPE}\s+${FRAMESLOT}\s+${PORT}\s+${VPI}\s+${VCI}\s+${FLOWTYPE}\s+${FLOWPARA}\s+${RX}\s+${TX}\s+${STATE}\s*$$ -> Record
+  ^.*$$
+  ^\s*$$
+  ^. -> Error

@@ -151,6 +151,64 @@ Interfaces
 ]
 ```
 
+### Example 3
+```
+XGSPON-D3-DDS_LAB#display service-port vlan 2250    
+{ <cr>|e2e<K>|inner-vlan<K>|sort-by<K>||<K> }: 
+
+  Command:
+          display service-port vlan 2250
+  Switch-Oriented Flow List
+  -----------------------------------------------------------------------------
+   INDEX VLAN VLAN     PORT F/ S/ P VPI  VCI   FLOW  FLOW       RX   TX   STATE
+         ID   ATTR     TYPE                    TYPE  PARA
+  -----------------------------------------------------------------------------
+       4 2250 common   gpon 0/2 /0  3    3     vlan  200        240  158  up   
+      16 2250 common   gpon 0/2 /2  4    3     vlan  200        40   22   down 
+      19 2250 common   gpon 0/2 /2  5    3     vlan  200        40   22   down 
+      22 2250 common   gpon 0/2 /2  6    3     vlan  200        40   22   down 
+      25 2250 common   gpon 0/2 /2  7    3     vlan  200        40   22   down 
+      28 2250 common   gpon 0/2 /2  8    3     vlan  200        40   22   down 
+      37 2250 common   gpon 0/2 /3  0    3     vlan  200        40   22   down 
+      40 2250 common   gpon 0/2 /3  2    3     vlan  200        40   22   down 
+      44 2250 common   gpon 0/2 /3  1    3     vlan  200        40   22   down 
+      47 2250 common   gpon 0/2 /3  3    3     vlan  200        40   22   down 
+      50 2250 common   gpon 0/2 /0  5    0     vlan  2250       250  163  down 
+      51 2250 common   gpon 0/2 /0  6    0     vlan  2250       250  163  down 
+  -----------------------------------------------------------------------------
+   Total : 12  (Up/Down :    1/11)
+   Note : F--Frame, S--Slot, P--Port,
+          VPI indicates ONT ID for PON, VCI indicates GEM index for GPON,
+          v/e--vlan/encap, pritag--priority-tagged,
+          ppp--pppoe, ip--ipoe, ip4--ipv4oe, ip6--ipv6oe, vxl--vxlan.
+```
+
+```
+Value INDEX (\S+)
+Value VLANID (\S+)
+Value VLANATTR (\S+)
+Value PORTTYPE (\S+)
+Value FRAMESLOT (\S+)
+Value PORT (\S+)
+Value VPI (\S+)
+Value VCI (\S+)
+Value FLOWTYPE (\S+)
+Value FLOWPARA (\S+)
+Value RX (\S+)
+Value TX (\S+)
+Value STATE (\S+)
+
+Start
+  ^\s+ID\s+ATTR\s+TYPE\s+TYPE\s+PARA.*$$ -> Interface
+
+Interface
+  ^\s*------.*$$
+  ^\s*${INDEX}\s+${VLANID}\s+${VLANATTR}\s+${PORTTYPE}\s+${FRAMESLOT}\s+${PORT}\s+${VPI}\s+${VCI}\s+${FLOWTYPE}\s+${FLOWPARA}\s+${RX}\s+${TX}\s+${STATE}\s*$$ -> Record
+  ^.*$$ {{untuk ambl (Total : 12  (Up/Down :    1/11) dan seterusnya) }}
+  ^\s*$$
+  ^. -> Error
+
+```
 
 ---
 
