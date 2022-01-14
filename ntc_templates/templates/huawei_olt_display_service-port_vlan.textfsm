@@ -1,16 +1,16 @@
-Value INDEX (\S+)
-Value VLANID (\S+)
+Value INDEX (\d+)
+Value VLANID (\d+)
 Value VLANATTR (\S+)
 Value PORTTYPE (\S+)
 Value FRAMESLOT (\S+)
 Value PORT (\S+)
-Value VPI (\S+)
-Value VCI (\S+)
+Value VPI (\d+)
+Value VCI (\d+)
 Value FLOWTYPE (\S+)
 Value FLOWPARA (\S+)
 Value RX (\S+)
 Value TX (\S+)
-Value STATE (\S+)
+Value STATE (up|down)
 
 Start
   ^\s+ID\s+ATTR\s+TYPE\s+TYPE\s+PARA.*$$ -> Interface
