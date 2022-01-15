@@ -1,4 +1,6 @@
-#run use:  $ python parse_output.py template1.textfsm unparsed1.txt
+#run use:
+#python3 parse_output.py template1.textfsm unparsed1.txt
+
 import sys
 import textfsm
 from tabulate import tabulate
