@@ -15,6 +15,7 @@ MULTIPOLAR TECHNOLOGY TBK
 
 Installation and Usage
 ----------------------
+- use sandbox_for_trial_writing_textfsm_template folder for testing and creating template first until template totally ready and correctly parsing the unparsed data
 - open run-me.py
 - put unparsed data on unparsed variable
 - ctrl+p and search for vendorname_osname_show_test
