@@ -1,5 +1,6 @@
-#run use:
-#python3 parse_output.py template1.textfsm unparsed1.txt
+# run use:
+# python3 parse_output.py template1.textfsm data1.txt
+# python3 parse_output.py template-etherchannelsummary.textfsm data-etherchannelsummary.txt
 
 import sys
 import textfsm
