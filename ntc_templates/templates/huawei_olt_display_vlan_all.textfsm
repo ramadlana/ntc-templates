@@ -1,0 +1,16 @@
+Value VLAN (\d+)
+Value TYPE (\S+)
+Value ATTR (\S+)
+Value STNDPORTNUM (\d+)
+Value SERVPORTNUM (\d+)
+Value VLANCONNUM (\S+)
+
+Start
+  ^\s+VLAN.*VLAN-Con NUM.*$$ -> Vlan
+
+Vlan
+  ^\s*------.*$$
+  ^\s*${VLAN}\s+${TYPE}\s+${ATTR}\s+${STNDPORTNUM}\s+${SERVPORTNUM}\s+${VLANCONNUM}\s*$$ -> Record
+  ^.*$$
+  ^\s*$$
+  ^. -> Error
