@@ -212,71 +212,7 @@ Interface
 
 ---
 
-##### Values
-
-The capture group names should be in UPPERCASE.
-
-An example of the proper format is shown below.
-
-```
-Value TIME (\d+:\d+:\d+)
-Value TIMEZONE (\S+)
-Value DAYWEEK (\w+)
-Value MONTH (\d+)
-Value DAY (\d+)
-Value YEAR (\d+)
-
-Start
-  ^${TIME}\s+${TIMEZONE}\s+${DAYWEEK}\s+${DAY}/${MONTH}/${YEAR} -> Record
-  ^. -> Error
-```
-##### States
-
-If the raw output has a heading, the `Start` state should match on the column headings and then transition to another state that will match the device's output table with the capture groups. This helps ensure the regex patterns for the capture groups are attempting to match the correct information, and allows templates to easily add additional States for tables that have different headings. 
-Example:
-
-*Raw Output*
-```
-... omitted
-Network Next Hop Metric LocPrf Weight Path
-*> 111.111.111.111/32 112.112.112.112 4294967295 4294967295 65535 1000 1000 1000 i
-```
-
-*Sample Template*
-```
-Start
-# Checking for header
-^\s*Network\s+Next(?:\s+|-)[Hh]op\s+Metric\s+LocPrf\s+Weight\s+Path\s*$$ -> BGPTable
-
-BGPTable
- ... omitted
-```
-
-Each **state** should end with `^. -> Error`. This helps to ensure we're accounting for every line within the raw output for the command. This doesn't mean we have to capture all the data as a **Value**, but we do have to account for it. In addition, it is also good to provide an expression to match blank lines, `^\s*$$`
-
-An example would be the following raw output:
-```
-NAME: "3640 chassis", DESCR: "3640 chassis"
-PID: , VID: 0xFF, SN: FF1045C5
-```
-
-The template would be the following:
-```
-Value NAME (.*)
-Value DESCRIPTION (.*)
-
-Start
-  ^NAME:\s+"${NAME}",\s*DESCR:\s+"${DESCRIPTION}"
-  ^PID:\s*,\s*VID:\s*\S+,\s*SN:\s*\S+
-  ^\s*$$
-  ^. -> Error
-```
-
-Taking a look at the example template above, you notice that we're using **\s*** and **\s+**. These are the preferred way to match space characters, and should be used over the literal space character. For example, `This\s+is\s+preferred\s*$$` vs `This is not preferred$$`
-
-- **\s*** accounts for zero or more spaces (use when the output may or may not have a space between characters)
-- **\s+** accounts for one or more spaces (use when output will have a space, but could have more than one space)
-
+# Other Examples:
 ## show clock
 
 The first example is a review of “sh clock” command output (output/sh_clock.txt file):
@@ -988,3 +924,71 @@ Po3        ['Fa0/11', 'Fa0/12', 'Fa0/13', 'Fa0/14', 'Fa0/15', 'Fa0/16']
 This concludes our work with TextFSM templates.
 
 Examples of templates for Cisco and other vendors can be seen in project [ntc-ansible](https://github.com/networktocode/ntc-templates/tree/89c57342b47c9990f0708226fb3f268c6b8c1549/templates).
+
+---
+
+##### Values
+
+The capture group names should be in UPPERCASE.
+
+An example of the proper format is shown below.
+
+```
+Value TIME (\d+:\d+:\d+)
+Value TIMEZONE (\S+)
+Value DAYWEEK (\w+)
+Value MONTH (\d+)
+Value DAY (\d+)
+Value YEAR (\d+)
+
+Start
+  ^${TIME}\s+${TIMEZONE}\s+${DAYWEEK}\s+${DAY}/${MONTH}/${YEAR} -> Record
+  ^. -> Error
+```
+##### States
+
+If the raw output has a heading, the `Start` state should match on the column headings and then transition to another state that will match the device's output table with the capture groups. This helps ensure the regex patterns for the capture groups are attempting to match the correct information, and allows templates to easily add additional States for tables that have different headings. 
+Example:
+
+*Raw Output*
+```
+... omitted
+Network Next Hop Metric LocPrf Weight Path
+*> 111.111.111.111/32 112.112.112.112 4294967295 4294967295 65535 1000 1000 1000 i
+```
+
+*Sample Template*
+```
+Start
+# Checking for header
+^\s*Network\s+Next(?:\s+|-)[Hh]op\s+Metric\s+LocPrf\s+Weight\s+Path\s*$$ -> BGPTable
+
+BGPTable
+ ... omitted
+```
+
+Each **state** should end with `^. -> Error`. This helps to ensure we're accounting for every line within the raw output for the command. This doesn't mean we have to capture all the data as a **Value**, but we do have to account for it. In addition, it is also good to provide an expression to match blank lines, `^\s*$$`
+
+An example would be the following raw output:
+```
+NAME: "3640 chassis", DESCR: "3640 chassis"
+PID: , VID: 0xFF, SN: FF1045C5
+```
+
+The template would be the following:
+```
+Value NAME (.*)
+Value DESCRIPTION (.*)
+
+Start
+  ^NAME:\s+"${NAME}",\s*DESCR:\s+"${DESCRIPTION}"
+  ^PID:\s*,\s*VID:\s*\S+,\s*SN:\s*\S+
+  ^\s*$$
+  ^. -> Error
+```
+
+Taking a look at the example template above, you notice that we're using **\s*** and **\s+**. These are the preferred way to match space characters, and should be used over the literal space character. For example, `This\s+is\s+preferred\s*$$` vs `This is not preferred$$`
+
+- **\s*** accounts for zero or more spaces (use when the output may or may not have a space between characters)
+- **\s+** accounts for one or more spaces (use when output will have a space, but could have more than one space)
+
