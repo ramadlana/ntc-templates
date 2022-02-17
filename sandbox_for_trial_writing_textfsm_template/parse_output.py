@@ -1,7 +1,5 @@
 # run use:
-# python3 parse_output.py template1.textfsm data1.txt
-# python3 parse_output.py template-etherchannelsummary.textfsm data-etherchannelsummary.txt
-
+# python3 parse_output.py template/show_ip_interface_brief.textfsm raw_data/show_ip_interface_brief.txt
 import sys
 import textfsm
 from tabulate import tabulate
@@ -13,7 +11,7 @@ with open(template) as f, open(output_file) as output:
     re_table = textfsm.TextFSM(f)
     header = re_table.header
     result = re_table.ParseText(output.read())
-    print(100*"=")
-    print(result)
+    # print(100*"=")
+    # print(result)
     print(100*"=")
     print(tabulate(result, headers=header))
